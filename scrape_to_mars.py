@@ -9,13 +9,13 @@ import time
 def init_browser():
     
     executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    return Browser('chrome', **executable_path, headless=False)
 
 
 def scrape():
 
+    browser = init_browser()
     scraped_data = {}
-
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
 
@@ -38,12 +38,12 @@ def scrape():
     for paragraph in paragraphs:
         headlines.append(paragraph.text)
         
-    news_title = titles[0]
+    news_title = [title for title in titles]
 
-    news_p = headlines[0]
+    news_p = [headline for headline in headlines]
 
-    scraped_data['news_title'] = news_title
-    scraped_data['news_p'] = news_p
+    scraped_data['news_title'] = news_title[1]
+    scraped_data['news_p'] = news_p[0]
 
 
     table_url = 'https://space-facts.com/mars/'
@@ -52,17 +52,10 @@ def scrape():
     mars_df = pd.read_html(str(table_url))[0]
 
 
-    mars_df.rename(columns = {0: 'Fact', 1:'Data'}, inplace=True)
-    
-
-
-
+    mars_df.rename(columns = {0: 'Fact', 1:'Data'}, inplace=True)  
 
 
     mars_df_html = mars_df.to_html(index = False)
-
-
-
 
 
     scraped_data['mars_facts'] = mars_df_html
