@@ -77,7 +77,7 @@ def scrape():
                        {'title': 'Syrtis Major Hemisphere ', 'img_url': 'https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced'},
                        {'title': 'Schiaparelli Hemisphere', 'img_url': 'https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced'}]
 
-    scraped_data['mars_hemisphere'] = hemisphere_image_url
+    scraped_data['hemisphere_image_url'] = hemisphere_image_url
 
     return scraped_data
 
