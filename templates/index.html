@@ -32,12 +32,12 @@
             
             <div class="col mb-4">
               <div class="card">
-                {% for pic_url in scraped_data.hemisphere_image_url.img_url %}
-                <img src={{pic_url}} class="card-img-top" alt="...">
+                {% for pic_url in scraped_data.hemisphere_image_url %}
+                <img src={{pic_url.img_url}} class="card-img-top" alt="...">
                 {% endfor %}
                 <div class="card-body">
-                    {% for img_title in scraped_data.hemisphere_image_url.title %}
-                  <h5 class="card-title">{{img_title}}</h5>
+                    {% for img_title in scraped_data.hemisphere_image_url[title] %}
+                  <h5 class="card-title">{{img_title.title}}</h5>
                   {% endfor %}
                 </div>
               </div>
