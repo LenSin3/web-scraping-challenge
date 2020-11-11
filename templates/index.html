@@ -16,41 +16,61 @@
         <div class="jumbotron text-center">
           <h1>Mission To Mars</h1>
           <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-         </div>
-
-         <div class="row">
-            <div class="col-md-12">
-                <h3>Latest Mars News</h3>
-                <p>{{scraped_data.news_title}}</p>
-                <p>{{scraped_data.news_p}}</p>
-
-            </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                
-                    {{scraped_data.mars_facts}}
-               
+        <div class="container">
 
-            </div>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-2">
-            
-            
-            <div class="col mb-4">
-              <div class="card">
-                {% for pic_url in scraped_data.hemisphere_image_url %}
-                <img src={{pic_url.img_url}} class="card-img-top" alt="...">
-                {% endfor %}
-                <div class="card-body">
-                    {% for img_title in scraped_data.hemisphere_image_url %}
-                  <h5 class="card-title">{{img_title.title}}</h5>
-                  {% endfor %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Latest Mars News</h3>
+                    <h6>{{scraped_data.news_title}}</h6>
+                    <p>{{scraped_data.news_p}}</p>
+    
                 </div>
-              </div>
             </div>
+             
+        </div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h3>Featured Mars Image</h3>
+                    <img src="{{ scraped_data.featured_image_url }}" style="max-width:100%; max-height: auto;" alt="Mars Featured Image">
+                </div>
+    
+                <div class="col-lg-4 col-md-4 col-sm-12">
+    
+                    <!-- Table -->
+                    
+                    <h3>Mars Facts</h3>
+                <div style="max-width: 450px; max-height: 150px; font-size: 15px; margin-bottom: 65px;">
+                    {{scraped_data.mars_facts}}
+                </div>
+    
+            </div>
+
+        </div>
+
+        <!-- Cards -->
+        <h3 style="padding-top: 50px; margin-top: 100px; text-align: center;">Mars Hemispheres</h3>
+        <div class="card-deck">
+            <hr>
+            <div class="col-md-12">
+                <div class="row">
+                    {% for item in scraped_data.hemisphere_image_urls %}
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark" style="margin: 30px;">
+                            <img class="card-img-top" src="{{ item.img_url }}" />
+                            <div class="card-body">
+                                <p class="card-text">{{ item.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
 
     </div>
