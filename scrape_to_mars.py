@@ -27,28 +27,12 @@ def scrape():
     response = requests.get(url)
     soup = BeautifulSoup(response.text,'html.parser')
 
-    # Create soup instance
-    ''' html = browser.html
-
-    soup = BeautifulSoup(html, 'html.parser')'''
 
     # Find all News Headlines
 
     news_title = soup.find('div', class_= "content_title").find('a').text.strip()
     news_p = soup.find('div', class_= "rollover_description_inner").text.strip()
 
-    # Find the first News Headline Paragraph Teaser
-    # paragraph = soup.find('div', class_="article_teaser_body").text
-
-    # Create empty list to hold the Headlines
-    '''titles = []
-    for quote in quotes:
-
-        # Store the headines as title list in titles        
-        titles.append(quote.text)'''
-
-    # Unpack the Headline list
-    '''news_title = [title for title in titles]'''
 
     # Extract the first Headline and save in scraped_data 
     scraped_data['news_title'] = news_title
